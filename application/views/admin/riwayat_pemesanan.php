@@ -1,3 +1,4 @@
+<?php $this->load->view('templates/header', ['title' => 'Admin Riwayat']); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,22 +70,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo site_url('dashboard'); ?>">Beranda</a>
+                    <a class="nav-link" href="<?php echo site_url('admin/dashboard'); ?>">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('tickets'); ?>">Daftar Tiket</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('pemesanan'); ?>">Pemesanan Tiket</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('history'); ?>">Riwayat Pemesanan</a>
+                    <a class="nav-link" href="<?php echo site_url('riwayat_admin'); ?>">Riwayat Pemesanan</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- Logo Akun -->
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('profile'); ?>">
+                    <a class="nav-link" href="<?php echo site_url('profil_admin'); ?>">
                         <i class="fas fa-user-circle fa-lg"></i>
                     </a>
                 </li>

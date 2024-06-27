@@ -1,3 +1,6 @@
+<?php $this->load->view('templates/header', ['title' => 'Admin Dashboard']); ?>
+<?php $this->load->view('templates/footer'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,26 +27,8 @@
             padding: 100px 0;
             text-align: center;
         }
-        .main-content {
-            padding: 50px 0;
-        }
-        .main-content .container {
-            text-align: center; /* Mengatur konten utama menjadi di tengah */
-        }
-        .main-content .col-md-4 {
-            margin-bottom: 30px; /* Memberikan ruang antar ikon */
-        }
-        .main-content .card {
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            transition: box-shadow 0.3s ease;
-        }
-        .main-content .card:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
         .footer {
-            background-color: #333;
+            background-color: #ff8c00; /* Warna latar belakang oren */
             color: #fff;
             padding: 50px 0;
         }
@@ -59,6 +44,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center; /* Teks di tengah secara vertikal */
+            margin-bottom: 20px; /* Margin bottom untuk spasi antar kolom pada layar kecil */
         }
         .footer-section h3 {
             color: #fff;
@@ -93,74 +79,39 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo site_url('dashboard'); ?>">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('tickets'); ?>">Daftar Tiket</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('pemesanan'); ?>">Pemesanan Tiket</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('history'); ?>">Riwayat Pemesanan</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <!-- Logo Akun -->
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('profile'); ?>">
-                        <i class="fas fa-user-circle fa-lg"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('auth/logout'); ?>">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="<?php echo site_url('admin/dashboard'); ?>">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('riwayat_admin'); ?>">Riwayat Pemesanan</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Logo Akun -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('profil_admin'); ?>">
+                    <i class="fas fa-user-circle fa-lg"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('auth/logout'); ?>">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
     <!-- Welcome Section -->
     <section class="welcome-section">
         <div class="container">
-            <h1>Selamat Datang di TIKBOOS</h1>
-            <p>Temukan pengalaman perjalanan yang tak terlupakan dengan layanan kami.</p>
+            <h1>Selamat Datang, Admin</h1>
+            <p>Ini adalah halaman beranda untuk admin.</p>
         </div>
     </section>
-
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <a href="<?php echo site_url('tickets'); ?>" class="text-dark">
-                            <i class="fas fa-list-alt fa-5x mb-3"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <a href="<?php echo site_url('pemesanan'); ?>" class="text-dark">
-                            <i class="fas fa-shopping-cart fa-5x mb-3"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <a href="<?php echo site_url('history'); ?>" class="text-dark">
-                            <i class="fas fa-history fa-5x mb-3"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">

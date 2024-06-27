@@ -118,6 +118,34 @@
             justify-content: center;
             margin-top: 20px; /* Margin top for button container */
         }
+        .booking-details {
+    flex: 1;
+    text-align: left; /* Mengatur teks rata kiri */
+    color: white; /* Mengatur warna teks putih */
+}
+
+.booking-details h5 {
+    margin-bottom: 10px;
+    color: white; /* Warna teks judul putih */
+    font-weight: bold; /* Teks judul tebal (bold) */
+}
+
+.booking-details p {
+    margin-bottom: 5px;
+}
+
+.qr-code {
+    text-align: right; /* Mengatur posisi QR code rata kanan */
+    flex-shrink: 0;
+}
+
+.qr-code img {
+    width: 150px; /* Ukuran gambar QR code */
+    height: 150px;
+    border-radius: 5px;
+    border: 2px solid #007bff; /* Garis tepi biru untuk QR code */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
     </style>
 </head>
 <body>
@@ -323,6 +351,7 @@
     });
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <script>
 function calculatePrice() {
     var hargaDasar = 0;
@@ -429,24 +458,59 @@ $(document).ready(function() {
         // Menghitung harga tiket
         var harga = calculatePrice();
 
-        // Menampilkan hasil seperti tiket dengan barcode
-        var hasil = `
-            <div class="info-message mt-3">
-                <h5>Detail Pemesanan Tiket:</h5>
-                <p>Nama: ${nama}</p>
-                <p>Tanggal Keberangkatan: ${tanggal}</p>
-                <p>Waktu Keberangkatan: ${waktu}</p>
-                <p>Rute: ${asal} - ${tujuan}</p>
-                <p>Kategori Bus: ${kategori}</p>
-                <p>Jumlah Tiket: ${jumlah_tiket}</p>
-                <p>Harga Tiket: Rp. ${harga.toLocaleString()}</p>
-                <p>Kursi: ${kursi}</p>
-        `;
+        // Konfirmasi pemesanan
+        var confirmation = confirm(`Harga total pemesanan tiket adalah Rp. ${harga.toLocaleString()}. Apakah Anda ingin melanjutkan?`);
 
-        // Menampilkan hasil di dalam container
-        $('.container').html(hasil);
+        if (confirmation) {
+            // Membuat data untuk QR Code
+            var qrData = `Nama:${nama},Tanggal:${tanggal},Waktu:${waktu},Asal:${asal},Tujuan:${tujuan},Kategori:${kategori},Jumlah:${jumlah_tiket},Kursi:${kursi}`;
+
+            // Membuat QR Code untuk detail pemesanan
+            var qr = new QRious({
+                value: qrData,
+                size: 200
+            });
+
+            // Menampilkan hasil detail pemesanan
+            var hasil = `
+                <div class="info-message mt-3 d-flex justify-content-between align-items-start">
+                    <div class="booking-details">
+                        <h5>Detail Pemesanan Tiket</h5>
+                        <p>Nama: ${nama}</p>
+                        <p>Tanggal Keberangkatan: ${tanggal}</p>
+                        <p>Waktu Keberangkatan: ${waktu}</p>
+                        <p>Rute: ${asal} - ${tujuan}</p>
+                        <p>Kategori Bus: ${kategori}</p>
+                        <p>Jumlah Tiket: ${jumlah_tiket}</p>
+                        <p>Kursi: ${kursi}</p>
+                    </div>
+                    <div class="qr-code">
+                        <img src="${qr.toDataURL()}" alt="QR Code Detail Pemesanan">
+                    </div>
+                </div>
+            `;
+
+            // Menyimpan detail pemesanan ke localStorage
+            var bookingHistory = JSON.parse(localStorage.getItem('bookingHistory')) || [];
+            bookingHistory.push({
+                nama: nama,
+                tanggal: tanggal,
+                waktu: waktu,
+                asal: asal,
+                tujuan: tujuan,
+                kategori: kategori,
+                jumlah_tiket: jumlah_tiket,
+                kursi: kursi,
+                qrData: qr.toDataURL()
+            });
+            localStorage.setItem('bookingHistory', JSON.stringify(bookingHistory));
+
+            // Menampilkan hasil di dalam container
+            $('.container').html(hasil);
+        }
     });
 });
+
 </script>
 
 

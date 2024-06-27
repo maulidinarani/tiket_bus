@@ -1,3 +1,4 @@
+<!-- application/views/login.php -->
 <?php $this->load->view('templates/header', ['title' => 'Login']); ?>
 <div class="container-fluid" style="background-color: #343a40; height: 100vh; display: flex; justify-content: center; align-items: center;">
     <div class="login-container" style="background-color: #ff8c00; color: #fff; text-align: center; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); width: 400px;">
@@ -5,11 +6,6 @@
         <?php if ($this->session->flashdata('error')) { ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo $this->session->flashdata('error'); ?>
-            </div>
-        <?php } ?>
-        <?php if ($this->session->flashdata('signup_success')) { ?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $this->session->flashdata('signup_success'); ?>
             </div>
         <?php } ?>
         <form action="<?php echo site_url('auth/do_login'); ?>" method="post">

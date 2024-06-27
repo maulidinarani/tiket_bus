@@ -60,3 +60,8 @@ $route['profile'] = 'profile_controller/index'; // Route untuk halaman profil
 $route['tickets'] = 'tickets/index'; // Route untuk halaman daftar tiket
 $route['history'] = 'history/index'; // Route untuk halaman riwayat pemesanan
 $route['pemesanan'] = 'pemesanan/index'; // Route untuk halaman pemesanan tiket
+$route['dashboard'] = 'admin/dashboard';
+$route['riwayat_admin'] = 'riwayat_admin/index';
+$route['dashboard'] = 'Dashboard/index';
+
+

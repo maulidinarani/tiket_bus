@@ -1,5 +1,5 @@
 <?php $this->load->view('templates/header', ['title' => 'Register']); ?>
-<div class="container-fluid" style="background-color: #f8f9fa; height: 100vh; display: flex; justify-content: center; align-items: center;">
+<div class="container-fluid" style="background-color: #343a40; height: 100vh; display: flex; justify-content: center; align-items: center;">
     <div class="register-container" style="background-color: #ff8c00; color: #fff; text-align: center; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); width: 400px;">
         <h1 class="mb-4">Register</h1>
         <?php if ($this->session->flashdata('error')) { ?>
